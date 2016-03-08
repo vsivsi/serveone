@@ -41,8 +41,11 @@ func main() {
 	}
 
 	fmt.Printf("Serving file %s on port %d\n", path.Base(filename), *port)
-	http.HandleFunc(fmt.Sprintf("/%s", path.Base(filename)), func(rw http.ResponseWriter, req *http.Request) {
+
+	handler := func (rw http.ResponseWriter, req *http.Request) {
 		http.ServeFile(rw, req, filename)
-	})
+	}
+
+	http.HandleFunc(fmt.Sprintf("/%s", path.Base(filename)), handler)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), nil))
 }
