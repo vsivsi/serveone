@@ -1,6 +1,6 @@
 # serveone
 
-Super simple web server that serves a single file on port 8088 (or one you choose with -port).
+Super simple web server that serves a single file on port 8088 (or one you choose with `-port`).
 
 The file then is available on the path of the base filename.
 
