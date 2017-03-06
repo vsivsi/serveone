@@ -4,15 +4,17 @@ Super simple web server that serves a single file on port 8088 (or one you choos
 
 The file then is available on the path of the base filename.
 
-Build with golang 1.6:
+##Building from source
 
-```
-go build serveone.go
+```sh
+$ go get -d github.com/vsivsi/serveone
+$ cd $GOPATH/src/github.com/vsivsi/serveone
+$ go install
 ```
 
 Use:
 ```
-% serveone -h
+$ serveone -h
 
 Usage:
  serveone [-port val] filename
@@ -23,12 +25,12 @@ Usage:
 Example:
 
 ```
-% serveone -port 5678 LICENSE &
+$ serveone -port 5678 LICENSE &
 [1] 85431
 Serving file LICENSE on port 5678
 
-% curl localhost:5678/LICENSE
-Copyright (C) 2016 by Vaughn Iverson
+$ curl localhost:5678/LICENSE
+Copyright (C) 2016-2017 by Vaughn Iverson
 
 serveone is free software released under the MIT/X11 license:
 
@@ -50,6 +52,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-% kill 85431
+$ kill 85431
 [1]+  Terminated: 15          serveone -port 5678 LICENSE
 ```

@@ -1,5 +1,5 @@
 /*****************************************************************************
-*     Copyright (C) 2016 by Vaughn Iverson
+*     Copyright (C) 2016-2017 by Vaughn Iverson
 *     serveone is free software released under the MIT/X11 license.
 *     See included LICENSE file for details.
 *****************************************************************************/
@@ -30,6 +30,11 @@ func main() {
 
 	filename := flag.Arg(0) // Should be a filename
 
+	if filename == "" {
+		usage()
+		os.Exit(1)
+	}
+
 	file, err := os.Open(filename)
 	if err != nil {
 		panic("Aborting, could not open file!")
@@ -42,7 +47,7 @@ func main() {
 
 	fmt.Printf("Serving file %s on port %d\n", path.Base(filename), *port)
 
-	handler := func (rw http.ResponseWriter, req *http.Request) {
+	handler := func(rw http.ResponseWriter, req *http.Request) {
 		http.ServeFile(rw, req, filename)
 	}
 
